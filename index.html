@@ -5,100 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <link type="text/css" rel="stylesheet" href="reset.css">
 </head>
 
 <body>
-    <script type="text/javascript">
+    <h1>Terminator Rock, Paper and Scissors</h1>
 
-        let computerScore = 0;
-        let userScore = 0;
-        let sprArray = ["scissors", "paper", "rock"];
-        let launchGame = epicSPRGame();
-        let finalConfirm = confirm("Would you like to battle the computer again?");
+    <div class="mainSection">
 
-        function epicSPRGame() {
-            for (let i = 0; i < 10; i++) {
-                let userSelection = prompt("            Scissors, paper, rock!            \n- Note: type 'scissors', 'paper', or 'rock' to play -");
-                let computerSelection = Math.floor(Math.random() * 3);
-                if (userSelection === sprArray[0]) {
-                    alert("You have chosen " + sprArray[0]);
-                } else if (userSelection === sprArray[1]) {
-                    alert("You have chosen " + sprArray[1]);
-                } else if (userSelection === sprArray[2]) {
-                    alert("You have chosen " + sprArray[2])
-                } else {
-                    alert("You must type 'scissors', 'paper' or 'rock' to play!")
-                }
+        <!-- Player VS Terminator -->
+        <div class="container">
+            <h3>T-800 Model 101</h3>
+            <p class="terminatorOneHealth"></p>
+        </div>
 
-                function computerSelectionOutput() {
-                    if (computerSelection === 0) {
-                        computerSelection = sprArray[0];
-                        alert("The computer has chosen " + sprArray[0] + ".");
-                    } else if (computerSelection === 1) {
-                        computerSelection = sprArray[1];
-                        alert("The computer has chosen " + sprArray[1] + ".");
-                    } else if (computerSelection === 2) {
-                        computerSelection = sprArray[2];
-                        alert("The computer has chosen " + sprArray[2] + ".");
-                    }
-                }
+        <!-- Player VS Terminator One HUD -->
+        <div class="display">
+            <p class="playOutput"></p>
+        </div>
 
-                computerSelectionOutput();
+        <!-- Player VS Terminator One Battle Controls -->
+        <div class="terminatorOneBattleControls">
+            <h3>Player VS T-800 Battle Controls</h3>
+            <button class="terminatorOneBattleControlsRock">Rock</button>
+            <button class="terminatorOneBattleControlsPaper">Paper</button>
+            <button class="terminatorOneBattleControlsScissors">Scissors</button>
+        </div>
 
-                function userSelectionOutput() {
-                    if (userSelection === sprArray[0] && computerSelection === sprArray[1]) {
-                        alert("YOU WIN!\nYou selected " + sprArray[0] + " and the computer selected " + sprArray[1] + ".");
-                        userScore += 1;
-                    } else if (userSelection === sprArray[0] && computerSelection === sprArray[2]) {
-                        alert("YOU LOSE!\nYou selected " + sprArray[0] + " and the computer selected " + sprArray[2] + ".");
-                        computerScore += 1;
-                    } else if (userSelection === sprArray[1] && computerSelection === sprArray[0]) {
-                        alert("YOU LOSE!\nYou selected " + sprArray[1] + " and the computer selected " + sprArray[0] + ".");
-                        computerScore += 1;
-                    } else if (userSelection === sprArray[1] && computerSelection === sprArray[2]) {
-                        alert("YOU WIN!\nYou selected " + sprArray[1] + " and the computer selected " + sprArray[2] + ".");
-                        userScore += 1;
-                    } else if (userSelection === sprArray[2] && computerSelection === sprArray[0]) {
-                        alert("YOU WIN!\nYou selected " + sprArray[2] + " and the computer selected " + sprArray[0] + ".");
-                        userScore += 1;
-                    } else if (userSelection === sprArray[2] && computerSelection === sprArray[1]) {
-                        alert("YOU LOSE!\nYou selected " + sprArray[2] + " and the computer selected " + sprArray[1] + ".");
-                        computerScore += 1;
-                    } else if (userSelection === computerSelection) {
-                        alert("You and the computer have drawed!");
-                    }
-                }
+        <div class="playerHealth"></div>
 
-                userSelectionOutput();
+    </div>
 
-            }
-
-            function gameScore() {
-                alert("User Score: " + userScore + " | Computer Score: " + computerScore);
-                if (userScore > computerScore) {
-                    alert("You have won this epic battle against the computer");
-                } else if (userScore === computerScore) {
-                    alert("You and the computer are tied in this battle");
-                } else {
-                    alert("The computer has you defeated in this epic battle of scissors, paper rock.");
-                }
-            }
-
-            gameScore();
-
-        }
-
-        epicSPRGame();
-        if (finalConfirm === true) {
-            epicSPRGame();
-        } else {
-            alert("Launching Website!");
-        }
-
-    </script>
-
-    <p>Welcome to aBuiDev's Scissors, Paper & Rock Game!</p>
-
+    <script src="./script.js"></script>
 </body>
 
 </html>
