@@ -11,8 +11,8 @@ const playerPlayOutput = document.querySelector('.playerPlayOutput');
 
 
 // Global Variables | Terminator One
-let terminatorOneDamage = 40;
-let playerDamage = 40;
+let terminatorOneDamageAmount = 40;
+let playerDamageAmount = 40;
 
 let playerHealthPoints = 100;
 playerHealth.innerText = playerHealthPoints;
@@ -42,58 +42,68 @@ async function terminatorMove () {
     return new Promise(resolve => {
         setTimeout(() => {
             resolve(randomiser());
-        }, 0);
+        }, 3000);
     });
 };
 
 
 
 async function playerSelectionOutput (playerSelection) {
+
     const getTerminatorSelection = await terminatorMove();
+
+    // Player Health System
+    const playerSustainDamage = () => {
+        playerHealthPoints = playerHealthPoints - terminatorOneDamageAmount;
+        playerHealth.innerText = playerHealthPoints;
+    }
+
+    // Terminator Health System
+    const terminatorSustainDamage = () => {
+        terminatorOneHealthPoints = terminatorOneHealthPoints - playerDamageAmount;
+        terminatorOneHealth.innerText = terminatorOneHealthPoints;
+    }
 
     // Terminator One Chooses Rock
     if (getTerminatorSelection === "Rock" && playerSelection === "Rock") {
         // Terminator One and Player Draw
         terminatorPlayOutput.innerText = `Terminator has picked ${getTerminatorSelection}`;
-        console.log("Draw!");
     } else if (getTerminatorSelection === "Rock" && playerSelection === "Paper") {
         // Terminator One Rock Loses to Player Paper
         terminatorPlayOutput.innerText = `Terminator has picked ${getTerminatorSelection}`;
-        console.log("Terminator Loses To Player");
+        terminatorSustainDamage();
     } else if (getTerminatorSelection === "Rock" && playerSelection === "Scissors") {
-        // Terminator One Rock Wins Player Scissors
+        // Terminator One Rock Beats Player Scissors
         terminatorPlayOutput.innerText = `Terminator has picked ${getTerminatorSelection}`;
-        console.log("Terminator Defeats Player");
+        playerSustainDamage();
     }
 
     // Terminator One Chooses Paper
     if (getTerminatorSelection === "Paper" && playerSelection === "Rock") {
-        // Terminator One Rock Loses to Player Paper
+        // Terminator One Paper Beats to Player Rock
         terminatorPlayOutput.innerText = `Terminator has picked ${getTerminatorSelection}`;
-        console.log("Terminator Defeats Player");
+        playerSustainDamage();
     } else if (getTerminatorSelection === "Paper" && playerSelection === "Paper") {
-        // Terminator One Rock Loses to Player Paper
+        // Terminator One and Player Draw
         terminatorPlayOutput.innerText = `Terminator has picked ${getTerminatorSelection}`;
-        console.log("Draw!");
     } else if (getTerminatorSelection === "Paper" && playerSelection === "Scissors") {
-        // Terminator One Rock Loses to Player Paper
+        // Terminator One Paper Loses to Player Scissors
         terminatorPlayOutput.innerText = `Terminator has picked ${getTerminatorSelection}`;
-        console.log("Terminator Loses To Player");
+        terminatorSustainDamage();
     }
 
     // Terminator One Chooses Scissors
     if (getTerminatorSelection === "Scissors" && playerSelection === "Rock") {
-        // Terminator One Rock Loses to Player Paper
+        // Terminator One Scissors Loses to Player Rock
         terminatorPlayOutput.innerText = `Terminator has picked ${getTerminatorSelection}`;
-        console.log("Terminator Loses To Player");
+        terminatorSustainDamage();
     } else if (getTerminatorSelection === "Scissors" && playerSelection === "Paper") {
-        // Terminator One Rock Loses to Player Paper
+        // Terminator One Scissors Beats Player Paper
         terminatorPlayOutput.innerText = `Terminator has picked ${getTerminatorSelection}`;
-        console.log("Terminator Defeats Player");
+        playerSustainDamage();
     } else if (getTerminatorSelection === "Scissors" && playerSelection === "Scissors") {
-        // Terminator One Rock Loses to Player Paper
+        // Terminator One and Player Draw
         terminatorPlayOutput.innerText = `Terminator has picked ${getTerminatorSelection}`;
-        console.log("Draw!");
     }
 }
 
@@ -121,20 +131,17 @@ terminatorOneBattleControlsScissors.addEventListener('click', () => {
 });
 
 
+const incrementorButton = document.querySelector(".incrementor");
+const incremented = document.querySelector(".incremented");
+
+let number = 0;
+
+incrementorButton.addEventListener('click', () => {
+    number = number + 1;
+    incremented.innerText = number;
+});
 
 
-// Player Health System
-const playerHealthSystem = () => {
-    playerHealthPoints = playerHealthPoints - terminatorOneDamage;
-    playerHealth.innerText = playerHealthPoints;
-}
 
-
-
-// Terminator Health System
-const terminatorHealthSystem = () => {
-    terminatorOneHealthPoints = terminatorOneHealthPoints - playerDamage;
-    terminatorOneHealth.innerText = terminatorOneHealthPoints;
-}
 
 
