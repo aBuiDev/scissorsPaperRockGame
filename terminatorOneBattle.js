@@ -6,6 +6,8 @@ const playerHealth = document.querySelector('.playerHealth');
 const terminatorOneHealth = document.querySelector('.terminatorOneHealth');
 const terminatorTwoHealth = document.querySelector('.terminatorTwoHealth');
 
+const playerControls = document.querySelector('.playerControls');
+const terminatorOneBattleControls = document.querySelector('.terminatorOneBattleControls');
 const terminatorOneBattleControlsRock = document.querySelector('.terminatorOneBattleControlsRock');
 const terminatorOneBattleControlsPaper = document.querySelector('.terminatorOneBattleControlsPaper');
 const terminatorOneBattleControlsScissors = document.querySelector('.terminatorOneBattleControlsScissors');
@@ -16,9 +18,8 @@ const playerPlayOutput = document.querySelector('.playerPlayOutput');
 
 
 // Global Variables | Terminator One
-let terminatorOneDamageAmount = 40;
-let terminatorTwoDamageAmount = 10;
-let playerDamageAmount = 40;
+let terminatorOneDamageAmount = 20;
+let playerDamageAmount = 40
 
 let playerHealthPoints = 100;
 playerHealth.innerText = playerHealthPoints;
@@ -26,8 +27,6 @@ playerHealth.innerText = playerHealthPoints;
 let terminatorOneHealthPoints = 100;
 terminatorOneHealth.innerText = terminatorOneHealthPoints;
 
-let terminatorTwoHealthPoints = 100;
-terminatorTwoHealth.innerText = terminatorTwoHealthPoints;
 
 
 // Randomiser
@@ -49,13 +48,13 @@ async function terminatorMove () {
     return new Promise(resolve => {
         setTimeout(() => {
             resolve(randomiser());
-        }, 2000);
+        }, 0);
     });
 };
 
 
 
-
+// Player VS Terminator One Battle Logic
 async function playerSelectionOutput (playerSelection) {
 
     const getTerminatorSelection = await terminatorMove();
@@ -113,6 +112,16 @@ async function playerSelectionOutput (playerSelection) {
         // Terminator One and Player Draw
         terminatorPlayOutput.innerText = `Terminator has picked ${getTerminatorSelection}`;
     }
+
+    // Endgame Mechanism
+    if (terminatorOneHealthPoints <= 0) {
+        terminatorOneHealth.innerText = "Terminator DESTROYED";
+        terminatorOneBattleControls.style = "display: none;"
+        playerHealth.innerText = playerHealthPoints + 50;
+    } else if (playerHealthPoints <= 0) {
+        playerHealth.innerText = "GAME OVER, PLAYER DESTROYED BY T-800";
+        playerControls.style = "display: none;"
+    }
 }
 
 
@@ -149,7 +158,19 @@ const terminatorTwoRandomNumberOutput = document.querySelector('.terminatorTwoRa
 const terminatorTwoPlayOutput = document.querySelector('.terminatorTwoPlayOutput');
 const playerNumberGuess = document.querySelector('.playerNumberGuess');
 
+
+
+// Global Variables Terminator Two
+let terminatorTwoHealthPoints = 100;
+terminatorTwoHealth.innerText = terminatorTwoHealthPoints;
+
 let terminatorCode;
+
+let terminatorTwoDamageAmount = 10;
+let playerHackDamageAmount = 100;
+
+
+
 
 playerGuessForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -157,12 +178,17 @@ playerGuessForm.addEventListener('submit', (event) => {
     playerVsTerminatorLogic(playerGuess);
 });
 
+
+
+
 const randomNumberGenerator = () => {
     let randomNumber = Math.floor(Math.random() * 100) + 1;
     return randomNumber;
 }
 
-// T-1000 Random Number Generate
+
+
+// T-1000 Random Number Generator
 async function terminatorTwoRandomNumberGenerate () {
     return new Promise(resolve => {
         setTimeout(() => {
@@ -171,6 +197,9 @@ async function terminatorTwoRandomNumberGenerate () {
     });
 };
 
+
+
+// T-1000 Random Number Generate Initialiser
 async function terminatorRandomNumber () {
     const terminatorRandomNumber = await terminatorTwoRandomNumberGenerate();
     terminatorTwoRandomNumberOutput.innerText = "###";
@@ -178,14 +207,41 @@ async function terminatorRandomNumber () {
     return terminatorRandomNumber;
 }
 
-terminatorRandomNumber();
 
+
+// Player VS Terminator Two Battle Logic
 async function playerVsTerminatorLogic (playerGuess) {
+
+    const playerSustainDamage = () => {
+        playerHealthPoints = playerHealthPoints - terminatorTwoDamageAmount;
+        playerHealth.innerText = playerHealthPoints;
+    }
+
+    const playerHacksTerminator = () => {
+        terminatorTwoHealthPoints = terminatorTwoHealthPoints - playerHackDamageAmount;
+        terminatorTwoHealth.innerText = terminatorTwoHealthPoints;
+    }
+
     if (playerGuess < terminatorCode) {
         terminatorTwoPlayOutput.innerHTML = "Terminator Code is greater than Player Guess";
+        playerSustainDamage();
     } else if (playerGuess > terminatorCode) {
         terminatorTwoPlayOutput.innerHTML = "Terminator Code is less than Player Guess";
+        playerSustainDamage();
     } else if (playerGuess = terminatorCode) {
         terminatorTwoPlayOutput.innerHTML = "Terminator HACKED! Terminator Code is " + terminatorCode + "!";
+        playerHacksTerminator();
+    }
+
+    if (terminatorTwoHealthPoints <= 0) {
+        terminatorTwoHealth.innerText = "TERMINATOR DESROYED!"
+    } else if (playerHealthPoints <= 0) {
+        playerHealth.innerText = "GAME OVER, PLAYER DESTROYED BY T-1000";
+        playerControls.style = "display: none;"
     }
 }
+
+
+
+// Terminator Two Calls to Generate a Random Number
+terminatorRandomNumber();
