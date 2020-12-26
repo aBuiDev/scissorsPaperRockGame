@@ -4,6 +4,7 @@
 
 const playerHealth = document.querySelector('.playerHealth');
 const terminatorOneHealth = document.querySelector('.terminatorOneHealth');
+const terminatorTwoHealth = document.querySelector('.terminatorTwoHealth');
 
 const terminatorOneBattleControlsRock = document.querySelector('.terminatorOneBattleControlsRock');
 const terminatorOneBattleControlsPaper = document.querySelector('.terminatorOneBattleControlsPaper');
@@ -25,7 +26,8 @@ playerHealth.innerText = playerHealthPoints;
 let terminatorOneHealthPoints = 100;
 terminatorOneHealth.innerText = terminatorOneHealthPoints;
 
-
+let terminatorTwoHealthPoints = 100;
+terminatorTwoHealth.innerText = terminatorTwoHealthPoints;
 
 
 // Randomiser
@@ -144,6 +146,8 @@ terminatorOneBattleControlsScissors.addEventListener('click', () => {
 
 const playerGuessForm = document.querySelector('#playerGuessForm');
 const terminatorTwoRandomNumberOutput = document.querySelector('.terminatorTwoRandomNumberOutput');
+const terminatorTwoPlayOutput = document.querySelector('.terminatorTwoPlayOutput');
+const playerNumberGuess = document.querySelector('.playerNumberGuess');
 
 let terminatorCode;
 
@@ -177,8 +181,11 @@ async function terminatorRandomNumber () {
 terminatorRandomNumber();
 
 async function playerVsTerminatorLogic (playerGuess) {
-
-    
-    console.log(terminatorCode);
-    console.log(playerGuess);
+    if (playerGuess < terminatorCode) {
+        terminatorTwoPlayOutput.innerHTML = "Terminator Code is greater than Player Guess";
+    } else if (playerGuess > terminatorCode) {
+        terminatorTwoPlayOutput.innerHTML = "Terminator Code is less than Player Guess";
+    } else if (playerGuess = terminatorCode) {
+        terminatorTwoPlayOutput.innerHTML = "Terminator HACKED! Terminator Code is " + terminatorCode + "!";
+    }
 }
