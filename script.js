@@ -17,6 +17,7 @@ const playerPlayOutput = document.querySelector('.playerPlayOutput');
 
 
 
+
 // Global Variables | Terminator One
 let terminatorOneDamageAmount = 20;
 let playerDamageAmount = 40
@@ -48,7 +49,7 @@ async function terminatorMove () {
     return new Promise(resolve => {
         setTimeout(() => {
             resolve(randomiser());
-        }, 0);
+        }, 3000);
     });
 };
 
@@ -171,13 +172,11 @@ let playerHackDamageAmount = 100;
 
 
 
-
 playerGuessForm.addEventListener('submit', (event) => {
     event.preventDefault();
     let playerGuess = playerGuessInput.value;
     playerVsTerminatorLogic(playerGuess);
 });
-
 
 
 
@@ -223,10 +222,10 @@ async function playerVsTerminatorLogic (playerGuess) {
     }
 
     if (playerGuess < terminatorCode) {
-        terminatorTwoPlayOutput.innerHTML = "Terminator Code is greater than Player Guess";
+        terminatorTwoPlayOutput.innerHTML = `Terminator Code is greater than Player Guess of ${playerGuess}.`;
         playerSustainDamage();
     } else if (playerGuess > terminatorCode) {
-        terminatorTwoPlayOutput.innerHTML = "Terminator Code is less than Player Guess";
+        terminatorTwoPlayOutput.innerHTML = `Terminator Code is less than Player Guess of ${playerGuess}.`;
         playerSustainDamage();
     } else if (playerGuess = terminatorCode) {
         terminatorTwoPlayOutput.innerHTML = "Terminator HACKED! Terminator Code is " + terminatorCode + "!";
@@ -240,6 +239,8 @@ async function playerVsTerminatorLogic (playerGuess) {
         playerControls.style = "display: none;"
     }
 }
+
+
 
 
 

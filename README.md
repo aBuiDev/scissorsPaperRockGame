@@ -1,5 +1,3 @@
-# Scissors Paper Rock Game
+# Terminator Rock Paper Scissor & Guess Game
 
-A "skeleton" of a scissors paper rock game using HTML and JavaScript. All inputs and outputs are via alerts, confirms and prompts.
-
-In a future iteration, this game will be remade with a proper interface. 
+As a method of learning ES6's Async/Await, this application features two games in one that operated asynchronously. Allowing the user to battle against two separate Terminator models.
