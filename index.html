@@ -37,7 +37,7 @@
 
             <!-- Player VS Terminator Two HUD -->
             <div class="display">
-                <p class="terminatorTwoRandomNumber">###</p>
+                <p class="terminatorTwoRandomNumberOutput"></p>
                 <p class="playerNumberGuess"></p>
             </div>
         </div>
@@ -56,9 +56,10 @@
         <!-- Player VS Terminator Two Battle Controls -->
         <div class="terminatorTwoBattleControls">
             <h3>Player VS T-1000 Battle Controls</h3>
-            <form class="playerGuessSubmit" action="submit">
-                <input type="number">
-                <input type="submit" value="Submit">
+            <form id="playerGuessForm" method="POST">
+                <label>Guess</label>
+                <input type="number" name="playerGuessInput" id="playerGuessInput">
+                <button>Submit</button>
             </form>
         </div>
     </div>
@@ -69,7 +70,6 @@
     </div>
 
     <script src="./terminatorOneBattle.js"></script>
-    <script src="./terminatorTwoBattle.js"></script>
 </body>
 
 </html>

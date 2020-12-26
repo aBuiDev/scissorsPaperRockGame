@@ -1,3 +1,7 @@
+// ==============================================================================
+// Terminator One Battle
+// ==============================================================================
+
 const playerHealth = document.querySelector('.playerHealth');
 const terminatorOneHealth = document.querySelector('.terminatorOneHealth');
 
@@ -12,6 +16,7 @@ const playerPlayOutput = document.querySelector('.playerPlayOutput');
 
 // Global Variables | Terminator One
 let terminatorOneDamageAmount = 40;
+let terminatorTwoDamageAmount = 10;
 let playerDamageAmount = 40;
 
 let playerHealthPoints = 100;
@@ -42,9 +47,10 @@ async function terminatorMove () {
     return new Promise(resolve => {
         setTimeout(() => {
             resolve(randomiser());
-        }, 0);
+        }, 2000);
     });
 };
+
 
 
 
@@ -131,17 +137,48 @@ terminatorOneBattleControlsScissors.addEventListener('click', () => {
 });
 
 
-const incrementorButton = document.querySelector(".incrementor");
-const incremented = document.querySelector(".incremented");
 
-let number = 0;
+// ==============================================================================
+// Terminator Two Battle
+// ==============================================================================
 
-incrementorButton.addEventListener('click', () => {
-    number = number + 1;
-    incremented.innerText = number;
+const playerGuessForm = document.querySelector('#playerGuessForm');
+const terminatorTwoRandomNumberOutput = document.querySelector('.terminatorTwoRandomNumberOutput');
+
+let terminatorCode;
+
+playerGuessForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    let playerGuess = playerGuessInput.value;
+    playerVsTerminatorLogic(playerGuess);
 });
 
+const randomNumberGenerator = () => {
+    let randomNumber = Math.floor(Math.random() * 100) + 1;
+    return randomNumber;
+}
 
+// T-1000 Random Number Generate
+async function terminatorTwoRandomNumberGenerate () {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve(randomNumberGenerator());
+        }, 3000);
+    });
+};
 
+async function terminatorRandomNumber () {
+    const terminatorRandomNumber = await terminatorTwoRandomNumberGenerate();
+    terminatorTwoRandomNumberOutput.innerText = "###";
+    terminatorCode = terminatorRandomNumber;
+    return terminatorRandomNumber;
+}
 
+terminatorRandomNumber();
 
+async function playerVsTerminatorLogic (playerGuess) {
+
+    
+    console.log(terminatorCode);
+    console.log(playerGuess);
+}
