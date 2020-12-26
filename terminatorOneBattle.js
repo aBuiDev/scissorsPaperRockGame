@@ -42,7 +42,7 @@ async function terminatorMove () {
     return new Promise(resolve => {
         setTimeout(() => {
             resolve(randomiser());
-        }, 3000);
+        }, 0);
     });
 };
 

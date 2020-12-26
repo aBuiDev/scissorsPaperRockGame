@@ -14,18 +14,37 @@
 
     <div class="mainSection">
 
-        <!-- Player VS Terminator -->
-        <div class="container">
-            <h3>T-800 Model 101</h3>
-            <p class="terminatorOneHealth"></p>
+        <div class="terminatorBattleContainer">
+            <!-- Player VS Terminator -->
+            <div class="terminatorDisplay">
+                <h3>T-800 Model 101</h3>
+                <p class="terminatorOneHealth"></p>
+            </div>
+
+            <!-- Player VS Terminator One HUD -->
+            <div class="display">
+                <p class="terminatorPlayOutput"></p>
+                <p class="playerPlayOutput"></p>
+            </div>
         </div>
 
-        <!-- Player VS Terminator One HUD -->
-        <div class="display">
-            <p class="terminatorPlayOutput"></p>
-            <p class="playerPlayOutput"></p>
-        </div>
+        <div class="terminatorBattleContainer">
+            <!-- Player VS Terminator -->
+            <div class="terminatorDisplay">
+                <h3>T-1000</h3>
+                <p class="terminatorTwoHealth"></p>
+            </div>
 
+            <!-- Player VS Terminator Two HUD -->
+            <div class="display">
+                <p class="terminatorTwoRandomNumber">###</p>
+                <p class="playerNumberGuess"></p>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="playerControls">
         <!-- Player VS Terminator One Battle Controls -->
         <div class="terminatorOneBattleControls">
             <h3>Player VS T-800 Battle Controls</h3>
@@ -34,15 +53,23 @@
             <button class="terminatorOneBattleControlsScissors">Scissors</button>
         </div>
 
-        <div class="playerHealth"></div>
+        <!-- Player VS Terminator Two Battle Controls -->
+        <div class="terminatorTwoBattleControls">
+            <h3>Player VS T-1000 Battle Controls</h3>
+            <form class="playerGuessSubmit" action="submit">
+                <input type="number">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
 
-        <button class="incrementor">Increment</button>
 
-        <p class="incremented"></p>
+    <div class="playerHealth">
 
     </div>
 
     <script src="./terminatorOneBattle.js"></script>
+    <script src="./terminatorTwoBattle.js"></script>
 </body>
 
 </html>
